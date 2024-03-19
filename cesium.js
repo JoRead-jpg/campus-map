@@ -1,3 +1,4 @@
+npm install cesium
 // Grant CesiumJS access to your ion assets
 Cesium.Ion.defaultAccessToken = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiIzYzA2NjMwYi1jZmUwLTRhMTAtYmZmOS1iMTUzNjE5ZWFmNWYiLCJpZCI6MjAzMTIwLCJpYXQiOjE3MTA4ODE4NDh9.2TILe8aJ-iAjA-pEioJKHpiipgkn1-ytHF_CJmxB22E";
 const viewer = new Cesium.Viewer("cesiumContainer");
