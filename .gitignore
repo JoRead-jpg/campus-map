@@ -1,0 +1,28 @@
+# Node modules
+
+/node_modules
+
+# Vite build output
+
+/dist
+
+# Environment files
+
+.env
+.env.local
+.env.\*.local
+
+# System files
+
+.DS_Store
+Thumbs.db
+
+# IDE files
+
+.idea
+.vscode
+_.suo
+_.ntvs\*
+_.njsproj
+_.sln
+\*.sw?
