@@ -1,27 +1,20 @@
-# Simple workflow for deploying static content to GitHub Pages
 name: Deploy static content to GitHub Pages
 
 on:
-  # Runs on pushes targeting the default branch
   push:
     branches: ["main"]
-
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# Sets the GITHUB_TOKEN permissions to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow one concurrent
 concurrency:
   group: "pages"
   cancel-in-progress: true
 
 jobs:
-  # Single deploy job since we're just deploying
   deploy:
     environment:
       name: github-pages
@@ -31,10 +24,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-              # Create the .nojekyll file in the docs directory
+      # Create the .nojekyll file in the root directory
       - name: Create .nojekyll file
-        run: |
-          touch docs/.nojekyll
+        run: touch .nojekyll
 
       - name: Set up Node
         uses: actions/setup-node@v3
@@ -46,24 +38,19 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-        working-directory: .
       - name: Build
         run: npm run build
 
-        working-directory: .
-      - name: rename build to docs
-        run: mv dist docs
+      # If you want to deploy from the root, you might not need to rename/move the build directory
+      # Ensure your build script places the output directly in the root or a specific folder that GitHub Pages is set to use
 
-        working-directory: .
       - name: Setup Pages
         uses: actions/configure-pages@v3
-        
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          # Upload dist repository
-          path: "./docs"
+          path: "./dist" # Change this to match the output directory of your build process
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v1
-.
