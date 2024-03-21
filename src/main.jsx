@@ -3,10 +3,10 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 import "./index.css";
 
-Object.defineProperty(globalThis, "CESIUM_BASE_URL", {
-  // `/cesium-package/` is the default path
-  value: "/cesium-package/",
-});
+// Object.defineProperty(globalThis, "CESIUM_BASE_URL", {
+//   // `/cesium-package/` is the default path
+//   value: "/cesium-package/",
+// });
 
 
 ReactDOM.createRoot(document.getElementById("root")).render(
