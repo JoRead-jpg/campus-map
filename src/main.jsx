@@ -1,4 +1,4 @@
-window.CESIUM_BASE_URL = "/campus-map/";
+window.CESIUM_BASE_URL = "https://denniesbor.github.io/campus-map/cesium/";
 
 import React from "react";
 import ReactDOM from "react-dom/client";
