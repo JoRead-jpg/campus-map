@@ -6,6 +6,11 @@
 
 /dist
 
+/old
+
+/main2.js
+
+/Counter.js
 # Environment files
 
 .env

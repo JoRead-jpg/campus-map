@@ -1,0 +1,86 @@
+/* General Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+
+h3 {
+  text-align: center;
+}
+
+/* App Container */
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Selection Panel */
+#selectionPanel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  padding: 10px;
+  background-color: #f3f3f3;
+  border-bottom: 1px solid #ddd;
+}
+
+#selectionPanel label {
+  display: inline-block;
+  margin-right: 10px;
+  font-weight: bold;
+}
+
+#selectionPanel select {
+  padding: 5px;
+  margin-right: 20px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#selectionPanel button {
+  padding: 5px 10px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 4px;
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+
+/* Map Containers */
+.map-containers {
+  display: flex;
+  flex-direction: row;
+  height: 50%;
+  margin-bottom: 5%;
+}
+
+.cesiumContainer, .leafletContainer {
+  flex: 1;
+  margin: 4px;
+  height: 100%;
+}
+
+#cesiumContainer, #leafletContainer {
+  height: 100%;
+}
+
+/* Room Views */
+#roomViews {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  height: 30%;
+}
+
+#startRoomContainer, #endRoomContainer {
+  flex: 1;
+  margin: 4px;
+  border: 1px solid #ccc;
+}
+
+.hidden {
+  display: none;
+}
