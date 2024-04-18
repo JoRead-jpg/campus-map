@@ -27,19 +27,19 @@ cesiumContainer.addEventListener("click", function () {
 
 // Initialize the Cesium Viewer in the 'cesiumContainer' DOM element
 async function initCesium() {
-  if (!window.mainViewer) {
-    window.mainViewer = new Cesium.Viewer("cesiumContainer", {
-      // Additional Cesium Viewer options can be configured here
-      terrainProvider: Cesium.createWorldTerrain(), // Assuming you have terrain data
-    });
-  }
-
-  // Clear existing entities from the viewer
-  const mainViewer = window.mainViewer;
-  mainViewer.entities.removeAll();
-
-  // Load a 3D tileset and adjust its elevation
   try {
+    if (!window.mainViewer) {
+      window.mainViewer = new Cesium.Viewer("cesiumContainer", {
+        // Additional Cesium Viewer options can be configured here
+        terrainProvider: Cesium.createWorldTerrain(), // Assuming you have terrain data
+      });
+    }
+
+    // Clear existing entities from the viewer
+    const mainViewer = window.mainViewer;
+    mainViewer.entities.removeAll();
+
+    // Load a 3D tileset and adjust its elevation
     const mainTileset = await Cesium.Cesium3DTileset.fromIonAssetId(2532045);
     mainViewer.scene.primitives.add(mainTileset);
 
@@ -88,7 +88,7 @@ async function initCesium() {
     await updateCoordinatesOnCameraMove(mainViewer);
     await syncCesiumWithLeaflet(map, mainViewer);
   } catch (error) {
-    console.error("Failed to load tileset:", error);
+    console.error("Failed to initialize Cesium:", error);
   }
 }
 
