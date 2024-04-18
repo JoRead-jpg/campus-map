@@ -30,6 +30,7 @@ async function initCesium() {
   if (!window.mainViewer) {
     window.mainViewer = new Cesium.Viewer("cesiumContainer", {
       // Additional Cesium Viewer options can be configured here
+      terrainProvider: Cesium.createWorldTerrain(), // Assuming you have terrain data
     });
   }
 
@@ -54,7 +55,7 @@ async function initCesium() {
     );
 
     // Adjusting for tileset's negative base height
-    const heightOffset = -1; // Set this to your base elevation
+    const heightOffset = 2; // Set this to ensure point cloud is above floors
     const offset = Cesium.Cartesian3.fromRadians(
       cartographic.longitude,
       cartographic.latitude,
