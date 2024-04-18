@@ -27,46 +27,67 @@ cesiumContainer.addEventListener("click", function () {
 
 // Initialize the Cesium Viewer in the 'cesiumContainer' DOM element
 async function initCesium() {
-  if (!window.mainViewer) {
-    window.mainViewer = new Cesium.Viewer("cesiumContainer", {
-      // Additional Cesium Viewer options can be configured here
-    });
-  }
-
-  // Clear existing entities from the viewer
-  const mainViewer = window.mainViewer;
-  mainViewer.entities.removeAll();
-
-  // Load a 3D tileset and adjust its elevation
   try {
+    if (!window.mainViewer) {
+      window.mainViewer = new Cesium.Viewer("cesiumContainer", {
+        // Additional Cesium Viewer options can be configured here
+      });
+    }
+
+    const mainViewer = window.mainViewer;
+    mainViewer.entities.removeAll();
+
     const mainTileset = await Cesium.Cesium3DTileset.fromIonAssetId(2532045);
     mainViewer.scene.primitives.add(mainTileset);
 
     await mainTileset.readyPromise;
-    const boundingSphere = mainTileset.boundingSphere;
-    const cartographic = Cesium.Cartographic.fromCartesian(
-      boundingSphere.center
-    );
-    const surface = Cesium.Cartesian3.fromRadians(
-      cartographic.longitude,
-      cartographic.latitude,
-      0
-    );
 
-    // Adjusting for tileset's negative base height
-    const heightOffset = 2; // Set this to your base elevation
-    const offset = Cesium.Cartesian3.fromRadians(
-      cartographic.longitude,
-      cartographic.latitude,
-      cartographic.height + heightOffset
-    );
+    // Ensure correct positioning of the tileset by adjusting the model matrix
+    adjustTilesetPosition(mainTileset);
 
-    const translation = Cesium.Cartesian3.subtract(
-      surface,
-      offset,
-      new Cesium.Cartesian3()
-    );
-    mainTileset.modelMatrix = Cesium.Matrix4.fromTranslation(translation);
+    // Set point cloud size
+    mainTileset.style = new Cesium.Cesium3DTileStyle({
+      pointSize: 5,
+    });
+
+    await mainViewer.zoomTo(mainTileset);
+
+    // Enable keyboard navigation and coordinates display
+    enableKeyboardNavigation(mainViewer);
+    await updateCoordinatesOnCameraMove(mainViewer);
+    await syncCesiumWithLeaflet(map, mainViewer);
+  } catch (error) {
+    console.error("Failed to load tileset:", error);
+  }
+}
+
+function adjustTilesetPosition(tileset) {
+  const heightOffset = -4; // Set this to your base elevation
+
+  const boundingSphere = tileset.boundingSphere;
+  const cartographic = Cesium.Cartographic.fromCartesian(
+    boundingSphere.center
+  );
+  const surface = Cesium.Cartesian3.fromRadians(
+    cartographic.longitude,
+    cartographic.latitude,
+    0
+  );
+
+  // Adjusting for tileset's negative base height
+  const offset = Cesium.Cartesian3.fromRadians(
+    cartographic.longitude,
+    cartographic.latitude,
+    cartographic.height + heightOffset
+  );
+
+  const translation = Cesium.Cartesian3.subtract(
+    surface,
+    offset,
+    new Cesium.Cartesian3()
+  );
+  tileset.modelMatrix = Cesium.Matrix4.fromTranslation(translation);
+}
 
     // Set point cloud size
     mainTileset.style = new Cesium.Cesium3DTileStyle({
