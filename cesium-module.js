@@ -27,19 +27,19 @@ cesiumContainer.addEventListener("click", function () {
 
 // Initialize the Cesium Viewer in the 'cesiumContainer' DOM element
 async function initCesium() {
+  if (!window.mainViewer) {
+    window.mainViewer = new Cesium.Viewer("cesiumContainer", {
+      // Additional Cesium Viewer options can be configured here
+      terrainProvider: Cesium.createWorldTerrain(), // Assuming you have terrain data
+    });
+  }
+
+  // Clear existing entities from the viewer
+  const mainViewer = window.mainViewer;
+  mainViewer.entities.removeAll();
+
+  // Load a 3D tileset and adjust its elevation
   try {
-    if (!window.mainViewer) {
-      window.mainViewer = new Cesium.Viewer("cesiumContainer", {
-        // Additional Cesium Viewer options can be configured here
-        terrainProvider: Cesium.createWorldTerrain(), // Assuming you have terrain data
-      });
-    }
-
-    // Clear existing entities from the viewer
-    const mainViewer = window.mainViewer;
-    mainViewer.entities.removeAll();
-
-    // Load a 3D tileset and adjust its elevation
     const mainTileset = await Cesium.Cesium3DTileset.fromIonAssetId(2532045);
     mainViewer.scene.primitives.add(mainTileset);
 
@@ -55,7 +55,7 @@ async function initCesium() {
     );
 
     // Adjusting for tileset's negative base height
-    const heightOffset = 5; // Increase this value to lift the point cloud further
+    const heightOffset = 2; // Set this to ensure point cloud is above floors
     const offset = Cesium.Cartesian3.fromRadians(
       cartographic.longitude,
       cartographic.latitude,
@@ -76,21 +76,15 @@ async function initCesium() {
 
     await mainViewer.zoomTo(mainTileset);
 
-    // Adjust camera pitch for better visibility
-    mainViewer.camera.setView({
-      orientation: {
-        pitch: Cesium.Math.toRadians(-30), // Adjust pitch as needed
-      },
-    });
-
     // Enable keyboard navigation and coordinates display
     enableKeyboardNavigation(mainViewer);
     await updateCoordinatesOnCameraMove(mainViewer);
     await syncCesiumWithLeaflet(map, mainViewer);
   } catch (error) {
-    console.error("Failed to initialize Cesium:", error);
+    console.error("Failed to load tileset:", error);
   }
 }
+
 
 // Enable keyboard navigation for the Cesium viewer
 function enableKeyboardNavigation(viewer) {
