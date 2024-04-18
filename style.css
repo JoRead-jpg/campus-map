@@ -1,0 +1,172 @@
+/* General Styles */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+h3 {
+  text-align: center;
+}
+/* App Container */
+#app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+#selectionPanel {
+  position: fixed;
+  right: 25%; /* Align to the right edge, ensuring full width */
+  display: flex;
+  justify-content: space-around; /* Distribute space around items */
+  align-items: center; /* Vertical alignment */
+  background-color: rgba(255, 255, 255, 0.9);
+  padding: 10px;
+  font-size: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adds subtle shadow for depth */
+}
+
+#selectionPanel label,
+#selectionPanel select,
+#selectionPanel button {
+  margin: 5px; /* Consistent margin for all child elements */
+  font-size: 16px; /* Slightly smaller font size for labels */
+}
+
+#selectionPanel label {
+  white-space: nowrap; /* Ensure labels do not wrap */
+  text-align: right; /* Maintain right-aligned text for clean appearance */
+}
+
+#selectionPanel select {
+  flex: 1; /* Flexibility in width */
+  min-width: 160px; /* Minimum width to ensure usability */
+  max-width: 200px; /* Limit the maximum width for design consistency */
+}
+
+#routeButton {
+  padding: 8px 16px; /* Slightly larger padding for better touch interaction */
+  background-color: dodgerblue;
+  color: white;
+  border-radius: 4px; /* Rounded corners */
+  cursor: pointer; /* Indicates the button is clickable */
+  font-size: 20px;
+}
+
+/* Map Containers */
+.map-containers {
+  display: flex;
+  flex-direction: row;
+  height: 70%;
+  margin-top: 50px; /* Add top margin to push below the selection panel */
+  margin-bottom: 5%;
+}
+
+.cesiumContainer,
+.leafletContainer {
+  flex: 1;
+  margin: 4px;
+  height: 100%;
+  position: relative;
+}
+
+#cesiumContainer,
+#leafletContainer {
+  height: 100%;
+}
+
+#cesiumContainer {
+  position: relative;
+}
+
+#cesiumContainer:focus {
+    outline: 2px solid blue; /* Add focus outline for accessibility */
+}
+
+/* General Styles for the Sliders */
+
+.slider {
+  background: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+  display: none; /* Initially hidden, shown via JavaScript */
+}
+
+/* Styling for the Route Info */
+#routeInfo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+  background: #e8e8e8;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#routeInfo span {
+  color: #333;
+  font-weight: bold;
+}
+
+/* Styling for Slider */
+#routeSlider {
+  width: 100%;
+  cursor: pointer;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .map-containers {
+    flex-direction: column;
+  }
+}
+
+/* Style for the floor banner container */
+.floor-banner {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 1000;
+}
+
+/* Style for all buttons in the floor banner */
+.floor-banner button {
+  margin: 5px; /* Adjust spacing between buttons */
+  padding: 8px 12px; /* Increase padding for larger buttons */
+  font-size: 16px; /* Increase font size for button labels */
+  border: none; /* Remove default button border */
+  cursor: pointer;
+}
+
+/* Style for the active button */
+.active {
+  background-color: blue;
+  color: white;
+}
+
+/* Hover effect for buttons */
+.floor-banner button:hover {
+  background-color: lightblue;
+}
+
+/* Coordinate box */
+#coordinatesBox {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background-color: rgba(0, 0, 0, 0.5); /* Black background with 50% transparency */
+  color: white; /* Text color set to white for visibility */
+  padding: 10px;
+  border-radius: 5px;
+  z-index: 1000; /* Ensures it's on top of other elements */
+}
+

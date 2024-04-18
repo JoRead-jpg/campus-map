@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css"
+    />
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
+    <script src="https://cesium.com/downloads/cesiumjs/releases/1.116/Build/Cesium/Cesium.js"></script>
+    <link
+      href="https://cesium.com/downloads/cesiumjs/releases/1.116/Build/Cesium/Widgets/widgets.css"
+      rel="stylesheet"
+    />
+    <title>Cesium Leaflet</title>
+  </head>
+  <body>
+    <div id="app">
+      <div id="selectionPanel">
+        <label for="buildingSelect">Building:</label>
+        <select id="buildingSelect">
+          <option value="exploratoryHall">Exploratory Hall</option>
+          <!-- Add more buildings as needed -->
+        </select>
+        <label for="startRoomSelect">Start Room:</label>
+        <select id="startRoomSelect">
+          <!-- Rooms will be populated based on building and floor selection -->
+        </select>
+
+        <label for="endRoomSelect">End Room:</label>
+        <select id="endRoomSelect">
+          <!-- Rooms will be populated based on building and floor selection -->
+        </select>
+
+        <button id="routeButton">Find Route</button>
+      </div>
+      <div class="map-containers">
+        <div class="cesiumContainer">
+          <h3>Cesium Container</h3>
+          <div id="cesiumContainer" tabindex="0">
+            <div id="coordinatesBox">
+              <h2>Coordinates</h2>
+              <p id="latitude">Latitude:</p>
+              <p id="longitude">Longitude:</p>
+              <p id="elevation">Elevation:</p>
+              <p id="floor">Floor:</p>
+            </div>
+          </div>
+          <div class="slider" style="display: none">
+            <!-- Initially hidden -->
+            <h3>Slide to view the route</h3>
+            <div id="routeInfo">
+              <span id="startPoint">Starting Point</span>
+              <span id="endPoint">Ending Point</span>
+            </div>
+            <input
+              type="range"
+              id="routeSlider"
+              min="0"
+              max="100"
+              value="0"
+              style="width: 100%"
+            />
+          </div>
+        </div>
+        <div class="leafletContainer">
+          <h3>Leaflet Container</h3>
+          <div id="leafletContainer"></div>
+          <div id="floorBanner" class="floor-banner">
+            <!-- Floor buttons will be dynamically populated here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
