@@ -54,7 +54,7 @@ async function initCesium() {
     );
 
     // Adjusting for tileset's negative base height
-    const heightOffset = -4; // Set this to your base elevation
+    const heightOffset = 2; // Set this to your base elevation
     const offset = Cesium.Cartesian3.fromRadians(
       cartographic.longitude,
       cartographic.latitude,
