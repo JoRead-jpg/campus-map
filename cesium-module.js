@@ -55,7 +55,7 @@ async function initCesium() {
     );
 
     // Adjusting for tileset's negative base height
-    const heightOffset = 2; // Set this to ensure point cloud is above floors
+    const heightOffset = 5; // Increase this value to lift the point cloud further
     const offset = Cesium.Cartesian3.fromRadians(
       cartographic.longitude,
       cartographic.latitude,
@@ -75,6 +75,13 @@ async function initCesium() {
     });
 
     await mainViewer.zoomTo(mainTileset);
+
+    // Adjust camera pitch for better visibility
+    mainViewer.camera.setView({
+      orientation: {
+        pitch: Cesium.Math.toRadians(-30), // Adjust pitch as needed
+      },
+    });
 
     // Enable keyboard navigation and coordinates display
     enableKeyboardNavigation(mainViewer);
