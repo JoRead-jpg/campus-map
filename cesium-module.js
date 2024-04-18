@@ -62,7 +62,7 @@ async function initCesium() {
 }
 
 function adjustTilesetPosition(tileset) {
-  const heightOffset = -4; // Set this to your base elevation
+  const heightOffset = 3; // Set this to your base elevation
 
   const boundingSphere = tileset.boundingSphere;
   const cartographic = Cesium.Cartographic.fromCartesian(
