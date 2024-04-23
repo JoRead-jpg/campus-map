@@ -16,7 +16,7 @@ This repository hosts the code for a JavaScript-based indoor navigation system u
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/yourusername/lidar-indoor-navigation.git
+   git clone https://github.com/denniesbor/campus-map.git
    cd campus-map
    npm install
    npm run dev
