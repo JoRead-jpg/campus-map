@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-This repository hosts the code for a JavaScript-based indoor navigation system using LiDAR data. The app is accessible from [here](https://denniesbor.github.io/campus-map).
+This repository hosts the code for a JavaScript-based indoor navigation system using LiDAR data. The app is accessible from [here](https://JoRead-jpg.github.io/campus-map).
 
 ![Method Box](./Figures/method-box.png)
 
@@ -16,7 +16,7 @@ This repository hosts the code for a JavaScript-based indoor navigation system u
 
 1. **Clone the repository:**
    ```bash
-   git clone https://github.com/denniesbor/campus-map.git
+   git clone https://github.com/JoRead-jpg/campus-map.git
    cd campus-map
    npm install
    npm run dev
